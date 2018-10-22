@@ -18,7 +18,7 @@ import java.util.Map;
  * @Auther: Innovation
  * @Date: 2018/9/3 14:36
  * @Vison: 1.0
- * @Description:
+ * @Description: Alibaba Druid Pool Config
  */
 @Configuration
 public class DruidConfig {
