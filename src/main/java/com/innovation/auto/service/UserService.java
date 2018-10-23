@@ -25,4 +25,15 @@ public class UserService {
             return "success";
         }
     }
+
+    /**
+     * 根据 UserName 查询 User
+     * @param name 用户名
+     * @return
+     */
+    public User selectByUsername(String name) {
+        User user = userMapper.selectByUsername(name);
+        return user;
+    }
+
 }

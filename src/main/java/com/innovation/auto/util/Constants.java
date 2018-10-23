@@ -20,7 +20,7 @@ public class Constants {
 
     //失败
     public static int ERROR2 = 3;
-    
+
     //失败
     public static int SUCCESS4 = 4;
 }

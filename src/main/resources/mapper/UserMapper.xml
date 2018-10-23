@@ -32,4 +32,10 @@
     select id, `name`, `password`
     from user
   </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, `name`, `password`
+    from user
+    where name = #{name}
+  </select>
 </mapper>
