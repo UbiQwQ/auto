@@ -1,7 +1,9 @@
 package com.innovation.auto.controller;
 
 import com.innovation.auto.entity.User;
+import com.innovation.auto.model.APIResult;
 import com.innovation.auto.service.UserService;
+import com.innovation.auto.util.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -62,11 +64,24 @@ public class UserController {
     }
 
 
-
+    @ApiOperation(value = "all user", notes = "查询所有用户")
     @GetMapping("/allUser")
-    public List<User> allUser(){
+    public APIResult allUser(){
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("ok");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        //查询所有用户
         List<User> listUser = userService.selectAllUser();
-        return listUser;
+
+        if (listUser != null){
+            apiResult.setRes(listUser);
+        }else {
+            apiResult.setStatus(Constants.ERROR);
+            apiResult.setMsg("空空如也");
+        }
+        return apiResult;
     }
 
     //退出登录
