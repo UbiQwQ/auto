@@ -91,7 +91,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/edit", "perms[delete]");
         filterChainDefinitionMap.put("/druid/**", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "anon");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

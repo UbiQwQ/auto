@@ -5,6 +5,8 @@ import com.innovation.auto.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Auther: Innovation
  * @Date: 2018/9/3 15:14
@@ -34,6 +36,15 @@ public class UserService {
     public User selectByUsername(String name) {
         User user = userMapper.selectByUsername(name);
         return user;
+    }
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    public List<User> selectAllUser() {
+        List<User> listUser = userMapper.selectAll();
+        return listUser;
     }
 
 }
