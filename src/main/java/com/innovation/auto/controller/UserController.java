@@ -88,14 +88,26 @@ public class UserController {
 
 
 
-
+    @ApiOperation(value = "user pageinfo", notes = "查询用户分页")
     @GetMapping(value = "/queryall")
-    public PageInfo<User> queryAll(@RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
-                                   @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) {
+    public APIResult queryAll(@RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
+                              @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) {
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("ok");
+        apiResult.setStatus(Constants.SUCCESS);
+
         PageHelper.startPage(pageNum, pageSize);
         List<User> list = userService.selectAllUser();
         PageInfo<User> pageInfo = new PageInfo<User>(list);
-        return  pageInfo;
+
+        if (pageInfo != null){
+            apiResult.setRes(pageInfo);
+        }else {
+            apiResult.setStatus(Constants.ERROR);
+            apiResult.setMsg("空空如也");
+        }
+        return  apiResult;
     }
 
 
