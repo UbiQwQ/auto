@@ -1,5 +1,7 @@
 package com.innovation.auto.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.innovation.auto.entity.User;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.service.UserService;
@@ -83,6 +85,22 @@ public class UserController {
         }
         return apiResult;
     }
+
+
+
+
+    @GetMapping(value = "/queryall")
+    public PageInfo<User> queryAll(@RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> list = userService.selectAllUser();
+        PageInfo<User> pageInfo = new PageInfo<User>(list);
+        return  pageInfo;
+    }
+
+
+
+
 
     //退出登录
     @RequestMapping("/logout")
