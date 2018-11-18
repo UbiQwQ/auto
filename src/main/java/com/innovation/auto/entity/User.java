@@ -1,19 +1,37 @@
 package com.innovation.auto.entity;
 
-import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User {
     private Integer id;
 
-    @ApiModelProperty(value = "userName", required = true, dataType = "string")
     private String name;
 
-    @ApiModelProperty(value = "userPassword", required = true, dataType = "string")
     private String password;
 
-    private static final long serialVersionUID = 1L;
+    private String randomString;
+
+    private String gander;
+
+    private String phone;
+
+    private String email;
+
+    private String personalProfile;
+
+    private String location;
+
+    private String experience;
+
+    private String head;
+
+    private Integer isAdmin;
+
+    private Integer status;
+
+    private Date updatedTime;
+
+    private Date createdTime;
 
     public Integer getId() {
         return id;
@@ -39,17 +57,99 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getRandomString() {
+        return randomString;
+    }
+
+    public void setRandomString(String randomString) {
+        this.randomString = randomString == null ? null : randomString.trim();
+    }
+
+    public String getGander() {
+        return gander;
+    }
+
+    public void setGander(String gander) {
+        this.gander = gander == null ? null : gander.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getPersonalProfile() {
+        return personalProfile;
+    }
+
+    public void setPersonalProfile(String personalProfile) {
+        this.personalProfile = personalProfile == null ? null : personalProfile.trim();
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location == null ? null : location.trim();
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience == null ? null : experience.trim();
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head == null ? null : head.trim();
+    }
+
+    public Integer getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }
