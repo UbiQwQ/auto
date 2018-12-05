@@ -1,7 +1,5 @@
 package com.innovation.auto.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.innovation.auto.entity.User;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.service.UserService;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * @Auther: Innovation
@@ -66,48 +63,63 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "all user", notes = "查询所有用户")
-    @GetMapping("/allUser")
-    public APIResult allUser(){
+//    @ApiOperation(value = "all user", notes = "查询所有用户")
+//    @GetMapping("/allUser")
+//    public APIResult allUser(){
+//
+//        APIResult apiResult = new APIResult();
+//        apiResult.setMsg("ok");
+//        apiResult.setStatus(Constants.SUCCESS);
+//
+//        //查询所有用户
+//        List<User> listUser = userService.selectAllUser();
+//
+//        if (listUser != null){
+//            apiResult.setRes(listUser);
+//        }else {
+//            apiResult.setStatus(Constants.ERROR);
+//            apiResult.setMsg("空空如也");
+//        }
+//        return apiResult;
+//    }
 
+
+//
+//    @ApiOperation(value = "user pageinfo", notes = "查询用户分页")
+//    @GetMapping(value = "/queryall")
+//    public APIResult queryAll(@RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
+//                              @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) {
+//
+//        APIResult apiResult = new APIResult();
+//        apiResult.setMsg("ok");
+//        apiResult.setStatus(Constants.SUCCESS);
+//
+//        PageHelper.startPage(pageNum, pageSize);
+//        List<User> list = userService.selectAllUser();
+//        PageInfo<User> pageInfo = new PageInfo<User>(list);
+//
+//        if (pageInfo != null){
+//            apiResult.setRes(pageInfo);
+//        }else {
+//            apiResult.setStatus(Constants.ERROR);
+//            apiResult.setMsg("空空如也");
+//        }
+//        return  apiResult;
+//    }
+
+    @GetMapping("/queryUserById")
+    public APIResult queryUserById(@RequestParam(value = "userId", required = false) Integer userId){
         APIResult apiResult = new APIResult();
         apiResult.setMsg("ok");
         apiResult.setStatus(Constants.SUCCESS);
 
-        //查询所有用户
-        List<User> listUser = userService.selectAllUser();
+        User user = userService.selectUserById(userId);
 
-        if (listUser != null){
-            apiResult.setRes(listUser);
-        }else {
-            apiResult.setStatus(Constants.ERROR);
-            apiResult.setMsg("空空如也");
-        }
+        apiResult.setRes(user);
+        apiResult.setStatus(Constants.SUCCESS);
+        apiResult.setMsg("query success");
         return apiResult;
-    }
 
-
-
-    @ApiOperation(value = "user pageinfo", notes = "查询用户分页")
-    @GetMapping(value = "/queryall")
-    public APIResult queryAll(@RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
-                              @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) {
-
-        APIResult apiResult = new APIResult();
-        apiResult.setMsg("ok");
-        apiResult.setStatus(Constants.SUCCESS);
-
-        PageHelper.startPage(pageNum, pageSize);
-        List<User> list = userService.selectAllUser();
-        PageInfo<User> pageInfo = new PageInfo<User>(list);
-
-        if (pageInfo != null){
-            apiResult.setRes(pageInfo);
-        }else {
-            apiResult.setStatus(Constants.ERROR);
-            apiResult.setMsg("空空如也");
-        }
-        return  apiResult;
     }
 
 

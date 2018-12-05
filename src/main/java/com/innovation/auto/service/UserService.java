@@ -2,10 +2,9 @@ package com.innovation.auto.service;
 
 import com.innovation.auto.entity.User;
 import com.innovation.auto.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * @Auther: Innovation
@@ -16,7 +15,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
+    @Resource
     UserMapper userMapper;
 
     public String register(User user){
@@ -28,23 +27,30 @@ public class UserService {
         }
     }
 
+//    /**
+//     * 根据 UserName 查询 User
+//     * @param name 用户名
+//     * @return
+//     */
+//    public User selectByUsername(String name) {
+//        User user = userMapper.selectByUsername(name);
+//        return user;
+//    }
+
     /**
-     * 根据 UserName 查询 User
-     * @param name 用户名
+     * 根据主键查询用户
      * @return
      */
-    public User selectByUsername(String name) {
-        User user = userMapper.selectByUsername(name);
+    public User selectUserById(Integer userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+
         return user;
     }
 
-    /**
-     * 查询所有用户
-     * @return
-     */
-    public List<User> selectAllUser() {
-        List<User> listUser = userMapper.selectAll();
-        return listUser;
-    }
+//    public User selectAllUser() {
+//        User user = userMapper.selectByPrimaryKey(userId);
+//
+//        return user;
+//    }
 
 }
