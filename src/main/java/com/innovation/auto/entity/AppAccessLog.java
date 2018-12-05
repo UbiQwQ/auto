@@ -40,7 +40,7 @@ public class AppAccessLog {
     }
 
     public void setTargetUrl(String targetUrl) {
-        this.targetUrl = targetUrl == null ? null : targetUrl.trim();
+        this.targetUrl = targetUrl;
     }
 
     public String getUa() {
@@ -48,7 +48,7 @@ public class AppAccessLog {
     }
 
     public void setUa(String ua) {
-        this.ua = ua == null ? null : ua.trim();
+        this.ua = ua;
     }
 
     public String getIp() {
@@ -56,7 +56,7 @@ public class AppAccessLog {
     }
 
     public void setIp(String ip) {
-        this.ip = ip == null ? null : ip.trim();
+        this.ip = ip;
     }
 
     public String getNote() {
@@ -64,7 +64,7 @@ public class AppAccessLog {
     }
 
     public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
+        this.note = note;
     }
 
     public Date getCreatedTime() {
@@ -80,6 +80,6 @@ public class AppAccessLog {
     }
 
     public void setQueryParams(String queryParams) {
-        this.queryParams = queryParams == null ? null : queryParams.trim();
+        this.queryParams = queryParams;
     }
 }

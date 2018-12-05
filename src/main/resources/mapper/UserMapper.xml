@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.innovation.auto.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.innovation.auto.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="random_string" jdbcType="VARCHAR" property="randomString" />
+    <result column="gander" jdbcType="VARCHAR" property="gander" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="personal_profile" jdbcType="VARCHAR" property="personalProfile" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, random_string, gander, phone, email, personal_profile, location, 
+    experience, head, is_admin, status, updated_time, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.innovation.auto.entity.User">
+    insert into user (id, name, password, 
+      random_string, gander, phone, 
+      email, personal_profile, location, 
+      experience, head, is_admin, 
+      status, updated_time, created_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{randomString,jdbcType=VARCHAR}, #{gander,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{personalProfile,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{experience,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, #{isAdmin,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.innovation.auto.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="randomString != null">
+        random_string,
+      </if>
+      <if test="gander != null">
+        gander,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="personalProfile != null">
+        personal_profile,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="head != null">
+        head,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="randomString != null">
+        #{randomString,jdbcType=VARCHAR},
+      </if>
+      <if test="gander != null">
+        #{gander,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="personalProfile != null">
+        #{personalProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null">
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.innovation.auto.entity.User">
+    update user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="randomString != null">
+        random_string = #{randomString,jdbcType=VARCHAR},
+      </if>
+      <if test="gander != null">
+        gander = #{gander,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="personalProfile != null">
+        personal_profile = #{personalProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null">
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.innovation.auto.entity.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      random_string = #{randomString,jdbcType=VARCHAR},
+      gander = #{gander,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      personal_profile = #{personalProfile,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有用户-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, `password`
+    from user
+  </select>
+  <!--根据用户名查询用户-->
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, `name`, `password`
+    from user
+    where name = #{name}
+  </select>
+
+</mapper>

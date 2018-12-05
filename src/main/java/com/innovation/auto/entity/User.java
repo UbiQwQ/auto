@@ -46,7 +46,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getPassword() {
@@ -54,7 +54,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getRandomString() {
@@ -62,7 +62,7 @@ public class User {
     }
 
     public void setRandomString(String randomString) {
-        this.randomString = randomString == null ? null : randomString.trim();
+        this.randomString = randomString;
     }
 
     public String getGander() {
@@ -70,7 +70,7 @@ public class User {
     }
 
     public void setGander(String gander) {
-        this.gander = gander == null ? null : gander.trim();
+        this.gander = gander;
     }
 
     public String getPhone() {
@@ -78,7 +78,7 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -86,7 +86,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getPersonalProfile() {
@@ -94,7 +94,7 @@ public class User {
     }
 
     public void setPersonalProfile(String personalProfile) {
-        this.personalProfile = personalProfile == null ? null : personalProfile.trim();
+        this.personalProfile = personalProfile;
     }
 
     public String getLocation() {
@@ -102,7 +102,7 @@ public class User {
     }
 
     public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
+        this.location = location;
     }
 
     public String getExperience() {
@@ -110,7 +110,7 @@ public class User {
     }
 
     public void setExperience(String experience) {
-        this.experience = experience == null ? null : experience.trim();
+        this.experience = experience;
     }
 
     public String getHead() {
@@ -118,7 +118,7 @@ public class User {
     }
 
     public void setHead(String head) {
-        this.head = head == null ? null : head.trim();
+        this.head = head;
     }
 
     public Integer getIsAdmin() {

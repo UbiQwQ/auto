@@ -2,7 +2,7 @@ package com.innovation.auto.entity;
 
 import java.util.Date;
 
-public class Collection {
+public class CollectionEntity {
     private Integer id;
 
     private Integer articleId;

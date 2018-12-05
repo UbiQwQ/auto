@@ -1,32 +1,17 @@
 package com.innovation.auto.mapper;
 
-
-import com.innovation.auto.entity.Collection;
-import com.innovation.auto.entity.CollectionExample;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.innovation.auto.entity.CollectionEntity;
 
 public interface CollectionMapper {
-    int countByExample(CollectionExample example);
-
-    int deleteByExample(CollectionExample example);
-
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Collection record);
+    int insert(CollectionEntity record);
 
-    int insertSelective(Collection record);
+    int insertSelective(CollectionEntity record);
 
-    List<Collection> selectByExample(CollectionExample example);
+    CollectionEntity selectByPrimaryKey(Integer id);
 
-    Collection selectByPrimaryKey(Integer id);
+    int updateByPrimaryKeySelective(CollectionEntity record);
 
-    int updateByExampleSelective(@Param("record") Collection record, @Param("example") CollectionExample example);
-
-    int updateByExample(@Param("record") Collection record, @Param("example") CollectionExample example);
-
-    int updateByPrimaryKeySelective(Collection record);
-
-    int updateByPrimaryKey(Collection record);
+    int updateByPrimaryKey(CollectionEntity record);
 }

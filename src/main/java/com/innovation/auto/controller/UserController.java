@@ -32,7 +32,7 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @ApiOperation(value = "user Register", notes = "注册接口")
     @PostMapping("/rgister")
@@ -83,6 +83,20 @@ public class UserController {
             apiResult.setStatus(Constants.ERROR);
             apiResult.setMsg("空空如也");
         }
+        return apiResult;
+    }
+
+    @GetMapping("/queryUserById")
+    public APIResult queryUserById(@RequestParam(value = "userId", required = false) Integer userId) {
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("ok");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        User user = userService.selectUserById(userId);
+
+        apiResult.setRes(user);
+        apiResult.setStatus(Constants.SUCCESS);
+        apiResult.setMsg("query success");
         return apiResult;
     }
 
