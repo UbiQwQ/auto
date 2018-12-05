@@ -28,7 +28,7 @@ public class Permission {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public String getUrls() {
@@ -36,7 +36,7 @@ public class Permission {
     }
 
     public void setUrls(String urls) {
-        this.urls = urls;
+        this.urls = urls == null ? null : urls.trim();
     }
 
     public Integer getStatus() {

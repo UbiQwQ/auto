@@ -26,7 +26,7 @@ public class Role {
     }
 
     public void setRoleName(String roleName) {
-        this.roleName = roleName;
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public Integer getStatus() {

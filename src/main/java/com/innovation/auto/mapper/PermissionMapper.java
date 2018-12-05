@@ -1,15 +1,29 @@
 package com.innovation.auto.mapper;
 
 import com.innovation.auto.entity.Permission;
+import com.innovation.auto.entity.PermissionExample;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PermissionMapper {
+    int countByExample(PermissionExample example);
+
+    int deleteByExample(PermissionExample example);
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Permission record);
 
     int insertSelective(Permission record);
 
+    List<Permission> selectByExample(PermissionExample example);
+
     Permission selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Permission record, @Param("example") PermissionExample example);
+
+    int updateByExample(@Param("record") Permission record, @Param("example") PermissionExample example);
 
     int updateByPrimaryKeySelective(Permission record);
 

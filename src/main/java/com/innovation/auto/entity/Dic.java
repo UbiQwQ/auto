@@ -26,7 +26,7 @@ public class Dic {
     }
 
     public void setPartitionId(String partitionId) {
-        this.partitionId = partitionId;
+        this.partitionId = partitionId == null ? null : partitionId.trim();
     }
 
     public String getPartitionDesc() {
@@ -34,7 +34,7 @@ public class Dic {
     }
 
     public void setPartitionDesc(String partitionDesc) {
-        this.partitionDesc = partitionDesc;
+        this.partitionDesc = partitionDesc == null ? null : partitionDesc.trim();
     }
 
     public String getDicCode() {
@@ -42,7 +42,7 @@ public class Dic {
     }
 
     public void setDicCode(String dicCode) {
-        this.dicCode = dicCode;
+        this.dicCode = dicCode == null ? null : dicCode.trim();
     }
 
     public String getDicLabel() {
@@ -50,7 +50,7 @@ public class Dic {
     }
 
     public void setDicLabel(String dicLabel) {
-        this.dicLabel = dicLabel;
+        this.dicLabel = dicLabel == null ? null : dicLabel.trim();
     }
 
     public String getDelFlg() {
@@ -58,6 +58,6 @@ public class Dic {
     }
 
     public void setDelFlg(String delFlg) {
-        this.delFlg = delFlg;
+        this.delFlg = delFlg == null ? null : delFlg.trim();
     }
 }

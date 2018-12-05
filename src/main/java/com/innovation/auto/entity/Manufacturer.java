@@ -24,7 +24,7 @@ public class Manufacturer {
     }
 
     public void setManufacturerName(String manufacturerName) {
-        this.manufacturerName = manufacturerName;
+        this.manufacturerName = manufacturerName == null ? null : manufacturerName.trim();
     }
 
     public Date getCreatedTime() {
@@ -40,6 +40,6 @@ public class Manufacturer {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 }

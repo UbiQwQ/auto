@@ -46,7 +46,7 @@ public class Article {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public Date getCreatedTime() {
@@ -62,7 +62,7 @@ public class Article {
     }
 
     public void setAgreeNum(String agreeNum) {
-        this.agreeNum = agreeNum;
+        this.agreeNum = agreeNum == null ? null : agreeNum.trim();
     }
 
     public String getDisagreeNum() {
@@ -70,7 +70,7 @@ public class Article {
     }
 
     public void setDisagreeNum(String disagreeNum) {
-        this.disagreeNum = disagreeNum;
+        this.disagreeNum = disagreeNum == null ? null : disagreeNum.trim();
     }
 
     public String getClicks() {
@@ -78,7 +78,7 @@ public class Article {
     }
 
     public void setClicks(String clicks) {
-        this.clicks = clicks;
+        this.clicks = clicks == null ? null : clicks.trim();
     }
 
     public String getCustomTags() {
@@ -86,7 +86,7 @@ public class Article {
     }
 
     public void setCustomTags(String customTags) {
-        this.customTags = customTags;
+        this.customTags = customTags == null ? null : customTags.trim();
     }
 
     public Integer getClassificationId() {
@@ -102,7 +102,7 @@ public class Article {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = image == null ? null : image.trim();
     }
 
     public String getTextBody() {
@@ -110,6 +110,6 @@ public class Article {
     }
 
     public void setTextBody(String textBody) {
-        this.textBody = textBody;
+        this.textBody = textBody == null ? null : textBody.trim();
     }
 }

@@ -22,7 +22,7 @@ public class Category {
     }
 
     public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
     public Date getCreatedTime() {

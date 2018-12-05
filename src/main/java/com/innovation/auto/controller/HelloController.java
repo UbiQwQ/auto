@@ -24,30 +24,9 @@ import java.util.Random;
 public class HelloController {
 
 
-
-    public static void main(String args[]) {
-        byte i = 127;
-        i  = (byte) (i + 2);
-
-        int a = 127;
-        a = a + 2;
-        try{
-            double x = 64.0;
-            double y = 0.0;
-            System.out.println(x/y);
-
-        }catch (Exception e){
-            System.out.println("666");
-        }
-
-        double b = (short)10/10.2*2;
-    }
-
     @GetMapping("/auto")
     public String hello(){
         return "hello Spring Boot...";
     }
-
-
 
 }

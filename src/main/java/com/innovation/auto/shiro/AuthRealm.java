@@ -1,13 +1,20 @@
 package com.innovation.auto.shiro;
 
+import com.innovation.auto.entity.User;
 import com.innovation.auto.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import io.lettuce.core.models.role.RedisInstance;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Auther: carver
@@ -73,23 +80,23 @@ public class AuthRealm extends AuthorizingRealm {
      * @return
      * @throws AuthenticationException
      */
-//    @Override
-//    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-//        //token携带了用户信息
-//        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
-//        //获取前端输入的用户名
-//        String userName  = usernamePasswordToken.getUsername();
-//        //根据用户名查询数据库中对应的记录
-//        User user = userService.selectByUsername(userName);
-//        //当前realm对象的name
-//        String realmName = getName();
-//        //盐值
-//        ByteSource credentialsSalt = ByteSource.Util.bytes(user.getName());
-//        //封装用户信息，构建AuthenticationInfo对象并返回
-//        AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(),
-//                credentialsSalt, realmName);
-//        return authcInfo;
-//    }
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        //token携带了用户信息
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+        //获取前端输入的用户名
+        String userName  = usernamePasswordToken.getUsername();
+        //根据用户名查询数据库中对应的记录
+        User user = userService.selectByUsername(userName);
+        //当前realm对象的name
+        String realmName = getName();
+        //盐值
+        ByteSource credentialsSalt = ByteSource.Util.bytes(user.getName());
+        //封装用户信息，构建AuthenticationInfo对象并返回
+        AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(),
+                credentialsSalt, realmName);
+        return authcInfo;
+    }
 
     /**
      * SUBJECT授权
@@ -98,11 +105,6 @@ public class AuthRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
-    }
-
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         return null;
     }
 }

@@ -57,7 +57,7 @@ maximumSpeed;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getModel() {
@@ -65,7 +65,7 @@ maximumSpeed;
     }
 
     public void setModel(String model) {
-        this.model = model;
+        this.model = model == null ? null : model.trim();
     }
 
     public Integer getManufacturerId() {
@@ -81,7 +81,7 @@ maximumSpeed;
     }
 
     public void setMadeCountry(String madeCountry) {
-        this.madeCountry = madeCountry;
+        this.madeCountry = madeCountry == null ? null : madeCountry.trim();
     }
 
     public Date getMarketTime() {
@@ -105,7 +105,7 @@ maximumSpeed;
     }
 
     public void setDisplacement(String displacement) {
-        this.displacement = displacement;
+        this.displacement = displacement == null ? null : displacement.trim();
     }
 
     public String getCylindersNum() {
@@ -113,7 +113,7 @@ maximumSpeed;
     }
 
     public void setCylindersNum(String cylindersNum) {
-        this.cylindersNum = cylindersNum;
+        this.cylindersNum = cylindersNum == null ? null : cylindersNum.trim();
     }
 
     public String getStroke() {
@@ -121,7 +121,7 @@ maximumSpeed;
     }
 
     public void setStroke(String stroke) {
-        this.stroke = stroke;
+        this.stroke = stroke == null ? null : stroke.trim();
     }
 
     public String getPerCylinderValve() {
@@ -129,7 +129,7 @@ maximumSpeed;
     }
 
     public void setPerCylinderValve(String perCylinderValve) {
-        this.perCylinderValve = perCylinderValve;
+        this.perCylinderValve = perCylinderValve == null ? null : perCylinderValve.trim();
     }
 
     public String getMaximumPower() {
@@ -137,7 +137,7 @@ maximumSpeed;
     }
 
     public void setMaximumPower(String maximumPower) {
-        this.maximumPower = maximumPower;
+        this.maximumPower = maximumPower == null ? null : maximumPower.trim();
     }
 
     public String getMaximumTorque() {
@@ -145,7 +145,7 @@ maximumSpeed;
     }
 
     public void setMaximumTorque(String maximumTorque) {
-        this.maximumTorque = maximumTorque;
+        this.maximumTorque = maximumTorque == null ? null : maximumTorque.trim();
     }
 
     public String getFuelConsumption() {
@@ -153,7 +153,7 @@ maximumSpeed;
     }
 
     public void setFuelConsumption(String fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
+        this.fuelConsumption = fuelConsumption == null ? null : fuelConsumption.trim();
     }
 
     public String getGear() {
@@ -161,7 +161,7 @@ maximumSpeed;
     }
 
     public void setGear(String gear) {
-        this.gear = gear;
+        this.gear = gear == null ? null : gear.trim();
     }
 
     public String getTankCapacity() {
@@ -169,7 +169,7 @@ maximumSpeed;
     }
 
     public void setTankCapacity(String tankCapacity) {
-        this.tankCapacity = tankCapacity;
+        this.tankCapacity = tankCapacity == null ? null : tankCapacity.trim();
     }
 
     public String getWeight() {
@@ -177,15 +177,7 @@ maximumSpeed;
     }
 
     public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public String getmaximumSpeed() {
-        return maximumSpeed;
-    }
-
-    public void setmaximumSpeed(String maximumSpeed) {
-        this.maximumSpeed = maximumSpeed;
+        this.weight = weight == null ? null : weight.trim();
     }
 
     public String getBrakeSystem() {
@@ -193,7 +185,7 @@ maximumSpeed;
     }
 
     public void setBrakeSystem(String brakeSystem) {
-        this.brakeSystem = brakeSystem;
+        this.brakeSystem = brakeSystem == null ? null : brakeSystem.trim();
     }
 
     public String getInstrument() {
@@ -201,6 +193,6 @@ maximumSpeed;
     }
 
     public void setInstrument(String instrument) {
-        this.instrument = instrument;
+        this.instrument = instrument == null ? null : instrument.trim();
     }
 }

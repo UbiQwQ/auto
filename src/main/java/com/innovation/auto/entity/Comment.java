@@ -48,7 +48,7 @@ public class Comment {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
     }
 
     public String getAgreeNum() {
@@ -56,7 +56,7 @@ public class Comment {
     }
 
     public void setAgreeNum(String agreeNum) {
-        this.agreeNum = agreeNum;
+        this.agreeNum = agreeNum == null ? null : agreeNum.trim();
     }
 
     public String getDisagreeNum() {
@@ -64,7 +64,7 @@ public class Comment {
     }
 
     public void setDisagreeNum(String disagreeNum) {
-        this.disagreeNum = disagreeNum;
+        this.disagreeNum = disagreeNum == null ? null : disagreeNum.trim();
     }
 
     public Integer getReferenceId() {
