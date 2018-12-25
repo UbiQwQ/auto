@@ -137,8 +137,7 @@ CREATE TABLE `motor_info` (
   `gear` varchar(10) NOT NULL COMMENT '挡位',
   `tank_capacity` varchar(10) NOT NULL COMMENT '邮箱容积',
   `weight` varchar(10) NOT NULL COMMENT '整车重量',
-  `
-maximum_speed` varchar(10) NOT NULL COMMENT '最高车速',
+  `maximum_speed` varchar(10) NOT NULL COMMENT '最高车速',
   `brake_system` varchar(15) NOT NULL COMMENT '制动系统',
   `instrument` varchar(15) NOT NULL COMMENT '仪表形式',
   PRIMARY KEY (`id`)

@@ -2,6 +2,8 @@ package com.innovation.auto.mapper;
 
 import com.innovation.auto.entity.MotorInfo;
 
+import java.util.List;
+
 public interface MotorInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,12 @@ public interface MotorInfoMapper {
     int updateByPrimaryKeySelective(MotorInfo record);
 
     int updateByPrimaryKey(MotorInfo record);
+
+    /**
+     * 查询所有汽车信息
+     * @return
+     */
+    List<MotorInfo> selectAuto();
+
+
 }

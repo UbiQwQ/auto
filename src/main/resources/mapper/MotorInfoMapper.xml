@@ -19,17 +19,14 @@
     <result column="gear" jdbcType="VARCHAR" property="gear" />
     <result column="tank_capacity" jdbcType="VARCHAR" property="tankCapacity" />
     <result column="weight" jdbcType="VARCHAR" property="weight" />
-    <result column="
-maximum_speed" jdbcType="VARCHAR" property="
-maximumSpeed" />
+    <result column="maximum_speed" jdbcType="VARCHAR" property="maximumSpeed" />
     <result column="brake_system" jdbcType="VARCHAR" property="brakeSystem" />
     <result column="instrument" jdbcType="VARCHAR" property="instrument" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, model, manufacturer_id, made_country, market_time, retail_price, displacement, 
     cylinders_num, stroke, per_cylinder_valve, maximum_power, maximum_torque, fuel_consumption, 
-    gear, tank_capacity, weight, 
-maximum_speed, brake_system, instrument
+    gear, tank_capacity, weight, maximum_speed, brake_system, instrument
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -281,4 +278,12 @@ maximumSpeed,jdbcType=VARCHAR},
       instrument = #{instrument,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <!--查询所有汽车信息-->
+  <select id="selectAuto" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from motor_info
+  </select>
 </mapper>

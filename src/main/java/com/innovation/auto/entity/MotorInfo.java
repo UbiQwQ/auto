@@ -37,8 +37,7 @@ public class MotorInfo {
 
     private String weight;
 
-    private String 
-maximumSpeed;
+    private String maximumSpeed;
 
     private String brakeSystem;
 
