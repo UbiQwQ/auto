@@ -23,6 +23,10 @@ public class AutoController {
     @Autowired
     private AutoService autoService;
 
+    /**
+     * 查询所有汽车信息
+     * @return
+     */
     @GetMapping("/queryAuto")
     public APIResult queryAuto() {
         APIResult apiResult = new APIResult();
