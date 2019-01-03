@@ -1,20 +1,13 @@
 package com.innovation.auto.shiro;
 
 import com.innovation.auto.entity.User;
-import com.innovation.auto.service.UserService;
-import io.lettuce.core.models.role.RedisInstance;
+import com.innovation.auto.module.register.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.Permission;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @Auther: carver

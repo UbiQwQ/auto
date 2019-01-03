@@ -1,4 +1,4 @@
-package com.innovation.auto.service;
+package com.innovation.auto.module.register.service;
 
 import com.innovation.auto.entity.User;
 

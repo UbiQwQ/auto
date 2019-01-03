@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
     <result column="random_string" jdbcType="VARCHAR" property="randomString" />
     <result column="gander" jdbcType="VARCHAR" property="gander" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
@@ -19,8 +20,8 @@
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, password, random_string, gander, phone, email, personal_profile, location, 
-    experience, head, is_admin, status, updated_time, created_time
+    id, name, password, birthday, random_string, gander, phone, email, personal_profile, 
+    location, experience, head, is_admin, status, updated_time, created_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -34,17 +35,17 @@
   </delete>
   <insert id="insert" parameterType="com.innovation.auto.entity.User">
     insert into user (id, name, password, 
-      random_string, gander, phone, 
-      email, personal_profile, location, 
-      experience, head, is_admin, 
-      status, updated_time, created_time
-      )
+      birthday, random_string, gander, 
+      phone, email, personal_profile, 
+      location, experience, head, 
+      is_admin, status, updated_time, 
+      created_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{randomString,jdbcType=VARCHAR}, #{gander,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{personalProfile,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
-      #{experience,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, #{isAdmin,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, #{createdTime,jdbcType=TIMESTAMP}
-      )
+      #{birthday,jdbcType=VARCHAR}, #{randomString,jdbcType=VARCHAR}, #{gander,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{personalProfile,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, 
+      #{isAdmin,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.innovation.auto.entity.User">
     insert into user
@@ -57,6 +58,9 @@
       </if>
       <if test="password != null">
         password,
+      </if>
+      <if test="birthday != null">
+        birthday,
       </if>
       <if test="randomString != null">
         random_string,
@@ -105,6 +109,9 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
       <if test="randomString != null">
         #{randomString,jdbcType=VARCHAR},
       </if>
@@ -152,6 +159,9 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
       <if test="randomString != null">
         random_string = #{randomString,jdbcType=VARCHAR},
       </if>
@@ -195,6 +205,7 @@
     update user
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
       random_string = #{randomString,jdbcType=VARCHAR},
       gander = #{gander,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},

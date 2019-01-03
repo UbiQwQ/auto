@@ -9,6 +9,8 @@ public class User {
 
     private String password;
 
+    private String birthday;
+
     private String randomString;
 
     private String gander;
@@ -55,6 +57,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getRandomString() {

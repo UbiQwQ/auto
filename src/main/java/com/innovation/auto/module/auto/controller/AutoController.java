@@ -6,9 +6,12 @@ import com.innovation.auto.module.auto.service.AutoService;
 import com.innovation.auto.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: carver
@@ -23,17 +26,20 @@ public class AutoController {
     @Autowired
     private AutoService autoService;
 
+
     /**
-     * 查询所有汽车信息
+     * 查询汽车信息/all/byCountry
      * @return
      */
     @GetMapping("/queryAuto")
-    public APIResult queryAuto() {
+    public APIResult queryAuto(@RequestParam(value = "countryId",required = false) Integer countryId) {
         APIResult apiResult = new APIResult();
         apiResult.setMsg("ok");
         apiResult.setStatus(Constants.SUCCESS);
 
-        List<MotorInfo> motorInfos = autoService.selectAuto();
+        Map<String,Object> map = new HashMap<>();
+        map.put("countryId",countryId);
+        List<MotorInfo> motorInfos = autoService.selectAuto(map);
 
 
         apiResult.setRes(motorInfos);

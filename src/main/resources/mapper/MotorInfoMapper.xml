@@ -44,16 +44,14 @@
       retail_price, displacement, cylinders_num, 
       stroke, per_cylinder_valve, maximum_power, 
       maximum_torque, fuel_consumption, gear, 
-      tank_capacity, weight, 
-maximum_speed, 
+      tank_capacity, weight, maximum_speed,
       brake_system, instrument)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
       #{manufacturerId,jdbcType=INTEGER}, #{madeCountry,jdbcType=VARCHAR}, #{marketTime,jdbcType=TIMESTAMP}, 
       #{retailPrice,jdbcType=DECIMAL}, #{displacement,jdbcType=VARCHAR}, #{cylindersNum,jdbcType=VARCHAR}, 
       #{stroke,jdbcType=VARCHAR}, #{perCylinderValve,jdbcType=VARCHAR}, #{maximumPower,jdbcType=VARCHAR}, 
       #{maximumTorque,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, #{gear,jdbcType=VARCHAR}, 
-      #{tankCapacity,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{
-maximumSpeed,jdbcType=VARCHAR}, 
+      #{tankCapacity,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{maximumSpeed,jdbcType=VARCHAR},
       #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.innovation.auto.entity.MotorInfo">
@@ -110,10 +108,8 @@ maximumSpeed,jdbcType=VARCHAR},
       <if test="weight != null">
         weight,
       </if>
-      <if test="
-maximumSpeed != null">
-        
-maximum_speed,
+      <if test="maximumSpeed != null">
+        maximum_speed,
       </if>
       <if test="brakeSystem != null">
         brake_system,
@@ -174,10 +170,8 @@ maximum_speed,
       <if test="weight != null">
         #{weight,jdbcType=VARCHAR},
       </if>
-      <if test="
-maximumSpeed != null">
-        #{
-maximumSpeed,jdbcType=VARCHAR},
+      <if test="maximumSpeed != null">
+        #{maximumSpeed,jdbcType=VARCHAR},
       </if>
       <if test="brakeSystem != null">
         #{brakeSystem,jdbcType=VARCHAR},
@@ -238,11 +232,8 @@ maximumSpeed,jdbcType=VARCHAR},
       <if test="weight != null">
         weight = #{weight,jdbcType=VARCHAR},
       </if>
-      <if test="
-maximumSpeed != null">
-        
-maximum_speed = #{
-maximumSpeed,jdbcType=VARCHAR},
+      <if test="maximumSpeed != null">
+        maximum_speed = #{maximumSpeed,jdbcType=VARCHAR},
       </if>
       <if test="brakeSystem != null">
         brake_system = #{brakeSystem,jdbcType=VARCHAR},
@@ -271,9 +262,7 @@ maximumSpeed,jdbcType=VARCHAR},
       gear = #{gear,jdbcType=VARCHAR},
       tank_capacity = #{tankCapacity,jdbcType=VARCHAR},
       weight = #{weight,jdbcType=VARCHAR},
-      
-maximum_speed = #{
-maximumSpeed,jdbcType=VARCHAR},
+      maximum_speed = #{maximumSpeed,jdbcType=VARCHAR},
       brake_system = #{brakeSystem,jdbcType=VARCHAR},
       instrument = #{instrument,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -281,9 +270,14 @@ maximumSpeed,jdbcType=VARCHAR},
 
 
   <!--查询所有汽车信息-->
-  <select id="selectAuto" resultMap="BaseResultMap">
+  <select id="selectAuto" parameterType="Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from motor_info
+    <where>
+      <if test="null != countryId">
+        made_country = #{countryId}
+      </if>
+    </where>
   </select>
 </mapper>

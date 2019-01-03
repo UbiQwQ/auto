@@ -1,8 +1,8 @@
-package com.innovation.auto.service.impl;
+package com.innovation.auto.module.register.service.impl;
 
 import com.innovation.auto.entity.User;
 import com.innovation.auto.mapper.UserMapper;
-import com.innovation.auto.service.UserService;
+import com.innovation.auto.module.register.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

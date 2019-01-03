@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: carver
@@ -23,9 +24,9 @@ public class AutoServiceImpl implements AutoService {
     private MotorInfoMapper motorInfoMapper;
 
     @Override
-    public List<MotorInfo> selectAuto() {
+    public List<MotorInfo> selectAuto(Map<String,Object> map) {
 
-        List<MotorInfo> motorInfos = motorInfoMapper.selectAuto();
+        List<MotorInfo> motorInfos = motorInfoMapper.selectAuto(map);
         return motorInfos;
     }
 }

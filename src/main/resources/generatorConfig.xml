@@ -134,12 +134,12 @@
                <!--enableSelectByExample="false"-->
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <!--<table schema="" tableName="user"-->
-               <!--enableCountByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
-        <!--</table>-->
+        <table schema="" tableName="user"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
         <!--<table schema="" tableName="user_role"-->
                <!--enableCountByExample="false"-->
                <!--enableDeleteByExample="false"-->
@@ -147,12 +147,12 @@
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
 
-        <table schema="" tableName="country"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
+        <!--<table schema="" tableName="country"-->
+               <!--enableCountByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+        <!--</table>-->
 
 
     </context>

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.innovation.auto.entity.User;
 import com.innovation.auto.model.APIResult;
-import com.innovation.auto.service.UserService;
+import com.innovation.auto.module.register.service.UserService;
 import com.innovation.auto.util.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

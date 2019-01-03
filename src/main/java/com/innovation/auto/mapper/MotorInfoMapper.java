@@ -3,6 +3,7 @@ package com.innovation.auto.mapper;
 import com.innovation.auto.entity.MotorInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MotorInfoMapper {
     int deleteByPrimaryKey(Integer id);
@@ -21,7 +22,7 @@ public interface MotorInfoMapper {
      * 查询所有汽车信息
      * @return
      */
-    List<MotorInfo> selectAuto();
+    List<MotorInfo> selectAuto(Map<String,Object> map);
 
 
 }
