@@ -2,6 +2,8 @@ package com.innovation.auto.mapper;
 
 import com.innovation.auto.entity.Article;
 
+import java.util.List;
+
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,10 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    /**
+     * 查询所有资讯文章
+     * @return
+     */
+    List<Article> selectAllInfo();
 }

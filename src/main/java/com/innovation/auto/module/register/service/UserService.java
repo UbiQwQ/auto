@@ -19,4 +19,11 @@ public interface UserService {
     List<User> selectAllUser();
 
     User selectUserById(Integer id);
+
+    /**
+     * 根据用户邮箱查询用户
+     * @param email
+     * @return
+     */
+    User selectUserByEmail(String email);
 }

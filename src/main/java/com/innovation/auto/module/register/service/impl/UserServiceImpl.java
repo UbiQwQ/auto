@@ -56,4 +56,19 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectByPrimaryKey(id);
         return user;
     }
+
+    /**
+     * 根据用户邮箱查询用户
+     * @param email
+     * @return
+     */
+    @Override
+    public User selectUserByEmail(String email) {
+        User user = userMapper.selectUserByEmail(email);
+        if (null != user) {
+            return user;
+        }else {
+            return null;
+        }
+    }
 }

@@ -232,5 +232,11 @@
     from user
     where name = #{name}
   </select>
+  <!--根据用户邮箱查询用户-->
+  <select id="selectUserByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, email,`name`, `password`
+    from user
+    where email = #{email}
+  </select>
 
 </mapper>

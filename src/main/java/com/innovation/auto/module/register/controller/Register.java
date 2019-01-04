@@ -25,6 +25,16 @@ public class Register {
     @Autowired
     private UserService userService;
 
+    /**
+     * 用户注册
+     * @param userName 用户名
+     * @param userPassword 用户密码
+     * @param email 用户邮箱
+     * @param birthday 用户生日
+     * @param gender 性别
+     * @return
+     * @throws ParseException
+     */
     @PostMapping("/user/register")
     public APIResult register(@RequestParam(value = "userName",required = true) String userName,
                               @RequestParam(value = "userPassword",required = true) String userPassword,

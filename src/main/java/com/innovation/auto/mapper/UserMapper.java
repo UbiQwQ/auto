@@ -29,4 +29,11 @@ public interface UserMapper {
      * @return
      */
     User selectByUsername(String name);
+
+    /**
+     * 根据用户邮箱查询用户
+     * @param email
+     * @return
+     */
+    User selectUserByEmail(String email);
 }
