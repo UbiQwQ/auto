@@ -1,10 +1,17 @@
-package com.innovation.auto.mapper;
+package com.innovation.auto.module.comment.service;
 
 import com.innovation.auto.entity.Comment;
 
 import java.util.List;
 
-public interface CommentMapper {
+/**
+ * @Auther: carver
+ * @Date: 2019/1/6 21:30
+ * @email lt1550919167@163.com
+ * @QQ 1550919167
+ * @Description:
+ */
+public interface CommentService {
 
     /**
      * 根据CommentID删除评论
@@ -13,21 +20,10 @@ public interface CommentMapper {
      */
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Comment record);
-
-    int insertSelective(Comment record);
-
-    Comment selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Comment record);
-
-    int updateByPrimaryKey(Comment record);
-
     /**
      * 根据用户id查询评论
      * @param comment
      * @return
      */
     List<Comment> selectMyComment(Comment comment);
-
 }

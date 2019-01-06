@@ -23,5 +23,5 @@ public interface ArticleMapper {
      * 查询所有资讯文章
      * @return
      */
-    List<Article> selectAllInfo();
+    List<Article> selectAllInfo(Article article);
 }

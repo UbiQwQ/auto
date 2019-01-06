@@ -21,9 +21,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private ArticleMapper articleMapper;
 
+    /**
+     * 根据资讯主键Id删除资讯文章
+     * @param id
+     * @return
+     */
     @Override
-    public List<Article> selectAllInfo() {
-        List<Article> articles = articleMapper.selectAllInfo();
+    public int deleteByPrimaryKey(Integer id) {
+        int result = articleMapper.deleteByPrimaryKey(id);
+        return result;
+    }
+
+    @Override
+    public List<Article> selectAllInfo(Article article) {
+        List<Article> articles = articleMapper.selectAllInfo(article);
         if (null != articles) {
             return articles;
         }else {

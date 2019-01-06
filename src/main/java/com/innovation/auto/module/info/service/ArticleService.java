@@ -14,8 +14,17 @@ import java.util.List;
 public interface ArticleService {
 
     /**
+     * 根据资讯文章主键删除文章
+     * @param id
+     * @return
+     */
+    int deleteByPrimaryKey(Integer id);
+
+    /**
      * 查询所有资讯文章
      * @return
      */
-    List<Article> selectAllInfo();
+    List<Article> selectAllInfo(Article article);
+
+
 }

@@ -183,11 +183,19 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--根据用户邮箱查询用户-->
-  <select id="selectAllInfo" resultMap="BaseResultMap">
+  <!--查询用户-->
+  <select id="selectAllInfo" parameterType="com.innovation.auto.entity.Article" resultMap="BaseResultMap">
     select t1.id,t1.user_id,t1.title,date_format(t1.created_time, '%Y-%m-%d') as created_time,t1.agree_num,
       t1.disagree_num,t1.clicks,t1.custom_tags,t1.classification_id,t1.image,t2.name
     from article t1
     inner join user t2 on t1.user_id = t2.id
+    <where>
+      <if test="title != null">
+          t1.title like '%${title}%'
+      </if>
+      <if test="userId != null">
+          t1.user_id = #{userId}
+      </if>
+    </where>
   </select>
 </mapper>
