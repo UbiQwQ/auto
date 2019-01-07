@@ -21,6 +21,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private ArticleMapper articleMapper;
 
+    @Override
+    public int insert(Article record) {
+        int insert = articleMapper.insert(record);
+        return insert;
+    }
+
     /**
      * 根据资讯主键Id删除资讯文章
      * @param id

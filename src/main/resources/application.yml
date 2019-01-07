@@ -85,3 +85,6 @@ mybatis:
 
 swagger:
   enable: true
+
+#Nginx图片服务器地址
+IMAGEHTTP: http://localhost:8000/

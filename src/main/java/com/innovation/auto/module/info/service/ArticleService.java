@@ -14,6 +14,13 @@ import java.util.List;
 public interface ArticleService {
 
     /**
+     * 发布一条资讯
+     * @param record
+     * @return
+     */
+    int insert(Article record);
+
+    /**
      * 根据资讯文章主键删除文章
      * @param id
      * @return

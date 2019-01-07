@@ -7,13 +7,19 @@ import com.innovation.auto.model.APIResult;
 import com.innovation.auto.module.info.service.ArticleService;
 import com.innovation.auto.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Auther: carver
@@ -24,6 +30,9 @@ import java.util.List;
  */
 @RestController
 public class InfoController {
+
+    @Value("${IMAGEHTTP}")
+    private String imageHttp;
 
     @Autowired
     private ArticleService articleService;
@@ -75,6 +84,65 @@ public class InfoController {
             return apiResult;
         }else {
             apiResult.setMsg("delete failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    @PostMapping("/info/insertInfo")
+    public APIResult insertInfo(@RequestParam(value = "id",required = true) Integer id,
+                                @RequestParam(value = "title",required = true) String title,
+                                @RequestParam(value = "content",required = true) String content,
+                                @RequestParam(value = "image",required = false) MultipartFile image) throws IOException {
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("insert successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        if (id == null) {
+            apiResult.setMsg("用户ID不能为空");
+            apiResult.setStatus(Constants.ERROR2);
+            return apiResult;
+        }
+        if (title == null) {
+            apiResult.setMsg("资讯标题不能为空");
+            apiResult.setStatus(Constants.ERROR2);
+            return apiResult;
+        }
+        if (content == null) {
+            apiResult.setMsg("资讯内容不能为空");
+            apiResult.setStatus(Constants.ERROR2);
+            return apiResult;
+        }
+
+        //拿到图片原始名称
+        String orginFilename = image.getOriginalFilename();
+        //图片存储路径
+        String imagePath = "D:\\Nginx\\AutoImg\\";
+        //UUID图片名称
+        String imageFilename = UUID.randomUUID() + orginFilename.substring(orginFilename.lastIndexOf("."));
+        //新的图片
+        File newFile = new File(imagePath + imageFilename);
+        //将内存中数据写入服务器磁盘
+        image.transferTo(newFile);
+
+        Article article = new Article();
+        article.setTitle(title);
+        article.setAgreeNum("0");
+        article.setUserId(id);
+        article.setClicks("0");
+        article.setCreatedTime(new Date());
+        article.setImage(imageHttp + imageFilename);
+        article.setDisagreeNum("0");
+        article.setTextBody(content);
+
+        int result = articleService.insert(article);
+
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("insert failed...");
             apiResult.setStatus(Constants.ERROR);
             return apiResult;
         }

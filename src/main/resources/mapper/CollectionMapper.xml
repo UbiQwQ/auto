@@ -6,6 +6,7 @@
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
   </resultMap>
   <sql id="Base_Column_List">
     id, article_id, user_id, created_time
@@ -79,4 +80,16 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询用户-->
+  <select id="selectMyCollection" parameterType="com.innovation.auto.entity.CollectionEntity" resultMap="BaseResultMap">
+    select t1.*,t2.title
+    from collection t1
+    inner join article t2 on t1.article_id = t2.id
+    <where>
+      <if test="userId != null">
+        t1.user_id = #{userId}
+      </if>
+    </where>
+  </select>
 </mapper>
