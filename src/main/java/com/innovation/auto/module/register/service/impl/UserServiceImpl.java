@@ -71,4 +71,15 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    /**
+     * 更新用户
+     * @param record
+     * @return
+     */
+    @Override
+    public int updateByPrimaryKeySelective(User record) {
+        int result = userMapper.updateByPrimaryKeySelective(record);
+        return result;
+    }
 }

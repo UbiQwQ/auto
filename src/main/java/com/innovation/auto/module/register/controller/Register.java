@@ -50,7 +50,7 @@ public class Register {
         user.setPassword(userPassword);
         user.setEmail(email);
         user.setBirthday(birthday);
-        user.setGander(gender.equals("男") ? "1" : "0");
+        user.setGender(gender.equals("男") ? "1" : "0");
         user.setExperience("0");
         user.setCreatedTime(new Date());
 

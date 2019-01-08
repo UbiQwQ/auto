@@ -26,4 +26,11 @@ public interface UserService {
      * @return
      */
     User selectUserByEmail(String email);
+
+    /**
+     * 更新用户
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(User record);
 }

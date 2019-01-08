@@ -7,7 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="birthday" jdbcType="VARCHAR" property="birthday" />
     <result column="random_string" jdbcType="VARCHAR" property="randomString" />
-    <result column="gander" jdbcType="VARCHAR" property="gander" />
+    <result column="gander" jdbcType="VARCHAR" property="gender" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="personal_profile" jdbcType="VARCHAR" property="personalProfile" />
@@ -165,8 +165,8 @@
       <if test="randomString != null">
         random_string = #{randomString,jdbcType=VARCHAR},
       </if>
-      <if test="gander != null">
-        gander = #{gander,jdbcType=VARCHAR},
+      <if test="gender != null">
+        gander = #{gender,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
