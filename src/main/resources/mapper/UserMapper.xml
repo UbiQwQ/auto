@@ -41,7 +41,7 @@
       is_admin, status, updated_time, 
       created_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=VARCHAR}, #{randomString,jdbcType=VARCHAR}, #{gander,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{randomString,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{personalProfile,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, 
       #{isAdmin,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, 
@@ -65,8 +65,8 @@
       <if test="randomString != null">
         random_string,
       </if>
-      <if test="gander != null">
-        gander,
+      <if test="gender != null">
+        gender,
       </if>
       <if test="phone != null">
         phone,

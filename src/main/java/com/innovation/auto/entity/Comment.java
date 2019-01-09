@@ -25,5 +25,7 @@ public class Comment {
 
     private String title;
 
+    private String name;
+
 
 }

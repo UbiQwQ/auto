@@ -30,4 +30,12 @@ public interface CommentMapper {
      */
     List<Comment> selectMyComment(Comment comment);
 
+    /**
+     * 根据文章id查询评论
+     * @param comment
+     * @return
+     */
+    List<Comment> selectInfoComment(Comment comment);
+
+
 }

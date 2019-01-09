@@ -11,6 +11,7 @@
     <result column="reference_id" jdbcType="INTEGER" property="referenceId" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_id, article_id, content, agree_num, disagree_num, reference_id, created_time
@@ -128,7 +129,7 @@
   </update>
 
 
-  <!--查询用户-->
+  <!--查询用户评论-->
   <select id="selectMyComment" parameterType="com.innovation.auto.entity.Comment" resultMap="BaseResultMap">
     select t1.*,t2.title
     from comment t1
@@ -136,6 +137,18 @@
     <where>
       <if test="userId != null">
         t1.user_id = #{userId}
+      </if>
+    </where>
+  </select>
+
+  <!--查询资讯评论-->
+  <select id="selectInfoComment" parameterType="com.innovation.auto.entity.Comment" resultMap="BaseResultMap">
+    select t1.*,t2.name
+    from comment t1
+    inner join user t2 on t1.user_id = t2.id
+    <where>
+      <if test="articleId != null">
+        t1.article_id = #{articleId}
       </if>
     </where>
   </select>

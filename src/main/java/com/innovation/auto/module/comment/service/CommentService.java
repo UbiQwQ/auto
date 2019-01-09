@@ -14,6 +14,13 @@ import java.util.List;
 public interface CommentService {
 
     /**
+     * 插入评论
+     * @param record
+     * @return
+     */
+    int insertSelective(Comment record);
+
+    /**
      * 根据CommentID删除评论
      * @param id
      * @return
@@ -26,4 +33,11 @@ public interface CommentService {
      * @return
      */
     List<Comment> selectMyComment(Comment comment);
+
+    /**
+     * 根据文章id查询评论
+     * @param comment
+     * @return
+     */
+    List<Comment> selectInfoComment(Comment comment);
 }

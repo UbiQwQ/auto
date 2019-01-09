@@ -38,7 +38,8 @@ public class InfoController {
     private ArticleService articleService;
 
     @GetMapping("/info")
-    public APIResult info(@RequestParam(value = "title",required = false) String title,
+    public APIResult info(@RequestParam(value = "infoId",required = false) Integer infoId,
+                          @RequestParam(value = "title",required = false) String title,
                           @RequestParam(value = "userId",required = false) Integer userId,
                           @RequestParam(value = "pageNum", required = false, defaultValue="1") Integer pageNum,
                           @RequestParam(value = "pageSize", required = false, defaultValue="10") Integer pageSize) throws ParseException {
@@ -48,6 +49,9 @@ public class InfoController {
         apiResult.setStatus(Constants.SUCCESS);
         //根据资讯标题查询
         Article article = new Article();
+        if (null != infoId){
+            article.setId(infoId);
+        }
         if (null != title) {
             article.setTitle(title);
         }
@@ -55,9 +59,16 @@ public class InfoController {
             article.setUserId(userId);
         }
 
+
         PageHelper.startPage(pageNum, pageSize);
         List<Article> articles = articleService.selectAllInfo(article);
         PageInfo<Article> pageInfo = new PageInfo<Article>(articles);
+
+        if (null != infoId) {
+            apiResult.setStatus(Constants.SUCCESS);
+            apiResult.setRes(articles.get(0));
+            return apiResult;
+        }
 
         if (null != articles){
             apiResult.setStatus(Constants.SUCCESS);

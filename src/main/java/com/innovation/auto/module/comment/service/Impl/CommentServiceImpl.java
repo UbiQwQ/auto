@@ -22,6 +22,12 @@ public class CommentServiceImpl implements CommentService {
     private CommentMapper commentMapper;
 
 
+    @Override
+    public int insertSelective(Comment record) {
+        int result = commentMapper.insertSelective(record);
+        return result;
+    }
+
     /**
      * 根据commentId删除评论
      * @param id
@@ -42,6 +48,12 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> selectMyComment(Comment comment) {
         List<Comment> comments = commentMapper.selectMyComment(comment);
 
+        return comments;
+    }
+
+    @Override
+    public List<Comment> selectInfoComment(Comment comment) {
+        List<Comment> comments = commentMapper.selectInfoComment(comment);
         return comments;
     }
 }
