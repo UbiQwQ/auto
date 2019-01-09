@@ -22,6 +22,12 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleMapper articleMapper;
 
     @Override
+    public Article selectByPrimaryKey(Integer id) {
+        Article article = articleMapper.selectByPrimaryKey(id);
+        return article;
+    }
+
+    @Override
     public int insert(Article record) {
         int insert = articleMapper.insert(record);
         return insert;
@@ -46,5 +52,11 @@ public class ArticleServiceImpl implements ArticleService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Article record) {
+        int result = articleMapper.updateByPrimaryKeySelective(record);
+        return result;
     }
 }

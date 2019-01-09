@@ -92,4 +92,18 @@
       </if>
     </where>
   </select>
+
+  <select id="selectCancelCollection" parameterType="com.innovation.auto.entity.CollectionEntity" resultMap="BaseResultMap">
+    select *
+    from collection
+    <where>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="articleId != null">
+        and article_id = #{articleId}
+      </if>
+    </where>
+  </select>
+
 </mapper>

@@ -14,6 +14,13 @@ import java.util.List;
 public interface ArticleService {
 
     /**
+     * 根据资讯主键查询资讯
+     * @param id
+     * @return
+     */
+    Article selectByPrimaryKey(Integer id);
+
+    /**
      * 发布一条资讯
      * @param record
      * @return
@@ -32,6 +39,13 @@ public interface ArticleService {
      * @return
      */
     List<Article> selectAllInfo(Article article);
+
+    /**
+     * 更新资讯信息
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(Article record);
 
 
 }

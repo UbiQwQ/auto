@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -85,6 +86,104 @@ public class CollectionController {
             return apiResult;
         }else {
             apiResult.setMsg("delete failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+
+    @PostMapping("/collection/insertCollection")
+    public APIResult insertCollection(@RequestParam(value = "infoId",required = false) Integer infoId,
+                                      @RequestParam(value = "userId",required = true) Integer userId) {
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("insert successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        if (null == userId) {
+            apiResult.setMsg("userId is null");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+
+        //根据资讯标题查询
+        CollectionEntity collectionEntity = new CollectionEntity();
+        collectionEntity.setUserId(userId);
+        collectionEntity.setArticleId(infoId);
+        collectionEntity.setCreatedTime(new Date());
+
+        int result = collectionService.insertSelective(collectionEntity);
+
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("insert failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    /**
+     * 取消收藏
+     * @param infoId
+     * @param userId
+     * @return
+     */
+    @PostMapping("/collection/cancelCollection")
+    public APIResult cancelCollection(@RequestParam(value = "infoId",required = false) Integer infoId,
+                                      @RequestParam(value = "userId",required = false) Integer userId){
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("insert successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        Integer id = new Integer(0);
+        
+        CollectionEntity collectionEntity = new CollectionEntity();
+        collectionEntity.setUserId(userId);
+        collectionEntity.setArticleId(infoId);
+
+        CollectionEntity collectionCancel = collectionService.selectCancelCollection(collectionEntity);
+        if (null != collectionCancel) {
+            id = collectionCancel.getId();
+        }
+        int result = collectionService.deleteByPrimaryKey(id);
+
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("insert failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    @GetMapping("/collection/queryIsCollection")
+    public APIResult queryIsCollection(@RequestParam(value = "infoId",required = false) Integer infoId,
+                                      @RequestParam(value = "userId",required = false) Integer userId){
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("insert successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        Integer id = new Integer(0);
+
+        if (null == userId) {
+            apiResult.setMsg("userId null");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+
+        CollectionEntity collectionEntity = new CollectionEntity();
+        collectionEntity.setUserId(userId);
+        collectionEntity.setArticleId(infoId);
+
+        CollectionEntity collectionCancel = collectionService.selectCancelCollection(collectionEntity);
+        if (null != collectionCancel && collectionCancel.getId() != null) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("insert failed...");
             apiResult.setStatus(Constants.ERROR);
             return apiResult;
         }

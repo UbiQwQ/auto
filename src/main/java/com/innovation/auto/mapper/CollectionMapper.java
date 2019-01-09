@@ -29,4 +29,11 @@ public interface CollectionMapper {
      * @return
      */
     List<CollectionEntity> selectMyCollection(CollectionEntity collection);
+
+    /**
+     * 查询该条收藏
+     * @param collection
+     * @return
+     */
+    CollectionEntity selectCancelCollection(CollectionEntity collection);
 }

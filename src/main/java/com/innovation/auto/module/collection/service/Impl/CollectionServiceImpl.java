@@ -32,4 +32,16 @@ public class CollectionServiceImpl implements CollectionService {
         List<CollectionEntity> collections = collectionMapper.selectMyCollection(collection);
         return collections;
     }
+
+    @Override
+    public int insertSelective(CollectionEntity record) {
+        int result = collectionMapper.insertSelective(record);
+        return result;
+    }
+
+    @Override
+    public CollectionEntity selectCancelCollection(CollectionEntity collection) {
+        CollectionEntity collectionEntity = collectionMapper.selectCancelCollection(collection);
+        return collectionEntity;
+    }
 }

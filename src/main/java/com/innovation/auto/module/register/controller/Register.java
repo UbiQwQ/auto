@@ -45,6 +45,13 @@ public class Register {
         apiResult.setMsg("registered successfully...");
         apiResult.setStatus(Constants.SUCCESS);
 
+        User userEmail = userService.selectUserByEmail(email);
+        if (null != userEmail) {
+            apiResult.setMsg("邮箱已经注册");
+            apiResult.setStatus(Constants.ERROR2);
+            return apiResult;
+        }
+
         User user = new User();
         user.setName(userName);
         user.setPassword(userPassword);

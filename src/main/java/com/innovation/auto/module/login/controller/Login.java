@@ -26,6 +26,14 @@ public class Login {
     private UserService userService;
 
 
+    /**
+     * 用户登录
+     * @param userPassword
+     * @param email
+     * @param session
+     * @return
+     * @throws ParseException
+     */
     @PostMapping("/user/login")
     public APIResult login(@RequestParam(value = "userPassword",required = true) String userPassword,
                            @RequestParam(value = "email",required = true) String email,

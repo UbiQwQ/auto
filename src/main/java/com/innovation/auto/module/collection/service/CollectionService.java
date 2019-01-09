@@ -26,4 +26,18 @@ public interface CollectionService {
      * @return
      */
     List<CollectionEntity> selectMyCollection(CollectionEntity collection);
+
+    /**
+     * 插入收藏
+     * @param record
+     * @return
+     */
+    int insertSelective(CollectionEntity record);
+
+    /**
+     * 查询该条收藏
+     * @param collection
+     * @return
+     */
+    CollectionEntity selectCancelCollection(CollectionEntity collection);
 }

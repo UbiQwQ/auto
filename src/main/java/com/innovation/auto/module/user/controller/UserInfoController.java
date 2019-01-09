@@ -33,6 +33,11 @@ public class UserInfoController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 查询用户
+     * @param userId
+     * @return
+     */
     @GetMapping("/user/queryUser")
     public APIResult queryUser(@RequestParam(value = "userId",required = true) Integer userId) {
 
@@ -56,6 +61,20 @@ public class UserInfoController {
     }
 
 
+    /**
+     * 修改资料
+     * @param userId
+     * @param userName
+     * @param phone
+     * @param birthday
+     * @param gender
+     * @param avatar
+     * @param password
+     * @param newPassword
+     * @param personal
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/user/updateUser")
     public APIResult updateUser(@RequestParam(value = "userId",required = true) Integer userId,
                                 @RequestParam(value = "userName",required = false) String userName,

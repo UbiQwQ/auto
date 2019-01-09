@@ -37,6 +37,16 @@ public class InfoController {
     @Autowired
     private ArticleService articleService;
 
+    /**
+     * 查询资讯
+     * @param infoId
+     * @param title
+     * @param userId
+     * @param pageNum
+     * @param pageSize
+     * @return
+     * @throws ParseException
+     */
     @GetMapping("/info")
     public APIResult info(@RequestParam(value = "infoId",required = false) Integer infoId,
                           @RequestParam(value = "title",required = false) String title,
@@ -47,6 +57,7 @@ public class InfoController {
         APIResult apiResult = new APIResult();
         apiResult.setMsg("query successfully...");
         apiResult.setStatus(Constants.SUCCESS);
+
         //根据资讯标题查询
         Article article = new Article();
         if (null != infoId){
@@ -81,6 +92,11 @@ public class InfoController {
         }
     }
 
+    /**
+     * 删除资讯
+     * @param id
+     * @return
+     */
     @PostMapping("/info/deleteInfo")
     public APIResult info(@RequestParam(value = "id",required = false) Integer id) {
 
@@ -100,6 +116,15 @@ public class InfoController {
         }
     }
 
+    /**
+     * 发布资讯
+     * @param id
+     * @param title
+     * @param content
+     * @param image
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/info/insertInfo")
     public APIResult insertInfo(@RequestParam(value = "id",required = true) Integer id,
                                 @RequestParam(value = "title",required = true) String title,
@@ -154,6 +179,42 @@ public class InfoController {
             return apiResult;
         }else {
             apiResult.setMsg("insert failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    /**
+     * 资讯点击次数
+     * @param id
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("/info/clickInfo")
+    public APIResult clickInfo(@RequestParam(value = "infoId",required = true) Integer id) throws IOException {
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("update successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+
+        if (id == null) {
+            apiResult.setMsg("用户ID不能为空");
+            apiResult.setStatus(Constants.ERROR2);
+            return apiResult;
+        }
+
+        Article article = articleService.selectByPrimaryKey(id);
+
+        String clicks = article.getClicks();
+        int clicksInt = Integer.parseInt(clicks) + 1;
+        article.setClicks(clicksInt+"");
+
+        int result = articleService.updateByPrimaryKeySelective(article);
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("update failed...");
             apiResult.setStatus(Constants.ERROR);
             return apiResult;
         }
