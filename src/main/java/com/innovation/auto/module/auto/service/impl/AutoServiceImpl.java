@@ -29,4 +29,20 @@ public class AutoServiceImpl implements AutoService {
         List<MotorInfo> motorInfos = motorInfoMapper.selectAuto(map);
         return motorInfos;
     }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return motorInfoMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(MotorInfo record) {
+        return motorInfoMapper.insert(record);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(MotorInfo record) {
+        return motorInfoMapper.updateByPrimaryKeySelective(record);
+    }
+
 }

@@ -20,4 +20,14 @@ public interface AutoService {
      */
     List<MotorInfo> selectAuto(Map<String,Object> map);
 
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(MotorInfo record);
+
+//    int insertSelective(MotorInfo record);
+//    MotorInfo selectByPrimaryKey(Integer id);
+    int updateByPrimaryKeySelective(MotorInfo record);
+
+//    int updateByPrimaryKey(MotorInfo record);
+
 }

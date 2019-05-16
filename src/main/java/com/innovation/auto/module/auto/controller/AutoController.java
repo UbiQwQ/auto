@@ -4,10 +4,9 @@ import com.innovation.auto.entity.MotorInfo;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.module.auto.service.AutoService;
 import com.innovation.auto.util.Constants;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,5 +46,63 @@ public class AutoController {
         apiResult.setMsg("query success");
         return apiResult;
     }
+
+    /**
+     * 删除汽车
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/motor")
+    public APIResult deleteAuto(@RequestParam(value = "id") Integer id) {
+
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("delete successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+        int result = autoService.deleteByPrimaryKey(id);
+
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("delete failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    @PostMapping("/motor")
+    public APIResult insertAuto(@RequestBody MotorInfo motorInfo) {
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("insert successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+        int result = autoService.insert(motorInfo);
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("insert failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+    @PutMapping("/motor")
+    public APIResult updateAuto(@RequestBody MotorInfo motorInfo) {
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("update successfully...");
+        apiResult.setStatus(Constants.SUCCESS);
+        int result = autoService.updateByPrimaryKeySelective(motorInfo);
+
+        if (result == 1) {
+            apiResult.setStatus(Constants.SUCCESS);
+            return apiResult;
+        }else {
+            apiResult.setMsg("update failed...");
+            apiResult.setStatus(Constants.ERROR);
+            return apiResult;
+        }
+    }
+
+
 
 }
