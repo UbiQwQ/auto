@@ -22,11 +22,12 @@
     <result column="maximum_speed" jdbcType="VARCHAR" property="maximumSpeed" />
     <result column="brake_system" jdbcType="VARCHAR" property="brakeSystem" />
     <result column="instrument" jdbcType="VARCHAR" property="instrument" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, model, manufacturer_id, made_country, market_time, retail_price, displacement, 
     cylinders_num, stroke, per_cylinder_valve, maximum_power, maximum_torque, fuel_consumption, 
-    gear, tank_capacity, weight, maximum_speed, brake_system, instrument
+    gear, tank_capacity, weight, maximum_speed, brake_system, instrument, type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -45,14 +46,14 @@
       stroke, per_cylinder_valve, maximum_power, 
       maximum_torque, fuel_consumption, gear, 
       tank_capacity, weight, maximum_speed,
-      brake_system, instrument)
+      brake_system, instrument, type)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
       #{manufacturerId,jdbcType=INTEGER}, #{madeCountry,jdbcType=VARCHAR}, #{marketTime,jdbcType=TIMESTAMP}, 
       #{retailPrice,jdbcType=DECIMAL}, #{displacement,jdbcType=VARCHAR}, #{cylindersNum,jdbcType=VARCHAR}, 
       #{stroke,jdbcType=VARCHAR}, #{perCylinderValve,jdbcType=VARCHAR}, #{maximumPower,jdbcType=VARCHAR}, 
       #{maximumTorque,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, #{gear,jdbcType=VARCHAR}, 
       #{tankCapacity,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{maximumSpeed,jdbcType=VARCHAR},
-      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR})
+      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.innovation.auto.entity.MotorInfo">
     insert into motor_info
@@ -117,6 +118,9 @@
       <if test="instrument != null">
         instrument,
       </if>
+      <if test="type != null">
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -178,6 +182,9 @@
       </if>
       <if test="instrument != null">
         #{instrument,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -241,6 +248,9 @@
       <if test="instrument != null">
         instrument = #{instrument,jdbcType=VARCHAR},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -264,7 +274,8 @@
       weight = #{weight,jdbcType=VARCHAR},
       maximum_speed = #{maximumSpeed,jdbcType=VARCHAR},
       brake_system = #{brakeSystem,jdbcType=VARCHAR},
-      instrument = #{instrument,jdbcType=VARCHAR}
+      instrument = #{instrument,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -280,4 +291,19 @@
       </if>
     </where>
   </select>
+
+  <!-- 分类查询机车 -->
+  <select id="selectByCategory" resultType="java.util.HashMap">
+    SELECT
+	c.`value`,
+	m.`name`,
+	m.id,
+	m.type
+    FROM
+	motor_info m,
+	CODE c
+    WHERE
+	m.type = c.id
+  </select>
+
 </mapper>
