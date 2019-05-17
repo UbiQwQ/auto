@@ -1,14 +1,10 @@
 package com.innovation.auto.module.category.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.innovation.auto.entity.Comment;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.module.category.service.CategoryService;
 import com.innovation.auto.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -49,14 +45,22 @@ public class CategoryController {
                 HashMap<String, Object> temp = new HashMap<>();
                 temp.put("name",x.get("name"));
                 temp.put("id",x.get("id"));
-                temp.put("type",x.get("type"));
+                temp.put("hot",x.get("hot"));
                 map.get(x.get("value")).add(temp);
             }
         });
 
-        if (null != map){
+        // 数据格式转换
+        List resList = new ArrayList<HashMap<String,Object>>();
+        set.forEach(x -> {
+            HashMap<String, Object> tempMap = new HashMap<>();
+            tempMap.put("category",  x);
+            tempMap.put("list", map.get(x));
+            resList.add(tempMap);
+        });
+        if (null != resList){
             apiResult.setStatus(Constants.SUCCESS);
-            apiResult.setRes(map);
+            apiResult.setRes(resList);
             return apiResult;
         }else {
             apiResult.setMsg("query failed...");
