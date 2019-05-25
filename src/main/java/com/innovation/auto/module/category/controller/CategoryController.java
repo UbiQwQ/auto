@@ -1,14 +1,10 @@
 package com.innovation.auto.module.category.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.innovation.auto.entity.Comment;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.module.category.service.CategoryService;
 import com.innovation.auto.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
