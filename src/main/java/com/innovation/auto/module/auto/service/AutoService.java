@@ -2,6 +2,7 @@ package com.innovation.auto.module.auto.service;
 
 import com.innovation.auto.entity.MotorInfo;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,5 +30,13 @@ public interface AutoService {
     int updateByPrimaryKeySelective(MotorInfo record);
 
 //    int updateByPrimaryKey(MotorInfo record);
+
+    /**
+     * @Description 特定motor详细信息
+     * @Date 2019/5/25 12:27
+     * @Param []
+     * @Return java.util.HashMap<java.lang.String , java.lang.String>
+     **/
+    LinkedHashMap<String,String> selectByMotorId(Integer id);
 
 }

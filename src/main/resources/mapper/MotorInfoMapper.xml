@@ -23,11 +23,12 @@
     <result column="brake_system" jdbcType="VARCHAR" property="brakeSystem" />
     <result column="instrument" jdbcType="VARCHAR" property="instrument" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="hot" jdbcType="INTEGER" property="hot" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, model, manufacturer_id, made_country, market_time, retail_price, displacement, 
     cylinders_num, stroke, per_cylinder_valve, maximum_power, maximum_torque, fuel_consumption, 
-    gear, tank_capacity, weight, maximum_speed, brake_system, instrument, type
+    gear, tank_capacity, weight, maximum_speed, brake_system, instrument, type, hot
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -46,14 +47,14 @@
       stroke, per_cylinder_valve, maximum_power, 
       maximum_torque, fuel_consumption, gear, 
       tank_capacity, weight, maximum_speed,
-      brake_system, instrument, type)
+      brake_system, instrument, type, hot)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
       #{manufacturerId,jdbcType=INTEGER}, #{madeCountry,jdbcType=VARCHAR}, #{marketTime,jdbcType=TIMESTAMP}, 
       #{retailPrice,jdbcType=DECIMAL}, #{displacement,jdbcType=VARCHAR}, #{cylindersNum,jdbcType=VARCHAR}, 
       #{stroke,jdbcType=VARCHAR}, #{perCylinderValve,jdbcType=VARCHAR}, #{maximumPower,jdbcType=VARCHAR}, 
       #{maximumTorque,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, #{gear,jdbcType=VARCHAR}, 
       #{tankCapacity,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{maximumSpeed,jdbcType=VARCHAR},
-      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER})
+      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}), #{hot,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.innovation.auto.entity.MotorInfo">
     insert into motor_info
@@ -121,6 +122,9 @@
       <if test="type != null">
         type,
       </if>
+      <if test="hot != null">
+        hot,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -185,6 +189,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hot != null">
+        #{hot,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -251,6 +258,9 @@
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
+      <if test="hot != null">
+        type = #{hot,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -275,7 +285,8 @@
       maximum_speed = #{maximumSpeed,jdbcType=VARCHAR},
       brake_system = #{brakeSystem,jdbcType=VARCHAR},
       instrument = #{instrument,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER}
+      type = #{type,jdbcType=INTEGER},
+      hot = #{hot,jdbcType=INTEGER},
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -298,12 +309,49 @@
 	c.`value`,
 	m.`name`,
 	m.id,
-	m.type
+	m.hot
     FROM
 	motor_info m,
 	CODE c
     WHERE
 	m.type = c.id
+  </select>
+
+  <!-- 查询特定motor详细信息-->
+  <select id="selectByMotorId" parameterType="java.lang.Integer" resultType="java.util.LinkedHashMap">
+    SELECT
+        a.id,
+        a.`name`,
+        a.model,
+        b.manufacturer_name,
+        c.country,
+        a.market_time,
+        a.retail_price,
+        a.displacement,
+        a.cylinders_num,
+        a.stroke,
+        a.per_cylinder_valve,
+        a.maximum_power,
+        a.maximum_torque,
+        a.fuel_consumption,
+        a.gear,
+        a.tank_capacity,
+        a.weight,
+        a.brake_system,
+        a.instrument,
+        a.maximum_speed,
+        d.`value`,
+        a.hot
+    FROM
+        motor_info a,
+        manufacturer b,
+        country c,
+        `code` d
+    WHERE
+        a.manufacturer_id = b.id
+    AND a.made_country = c.ccode
+    AND a.type = d.id
+    AND a.id = #{id}
   </select>
 
 </mapper>

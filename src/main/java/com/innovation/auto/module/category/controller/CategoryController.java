@@ -45,14 +45,22 @@ public class CategoryController {
                 HashMap<String, Object> temp = new HashMap<>();
                 temp.put("name",x.get("name"));
                 temp.put("id",x.get("id"));
-                temp.put("type",x.get("type"));
+                temp.put("hot",x.get("hot"));
                 map.get(x.get("value")).add(temp);
             }
         });
 
-        if (null != map){
+        // 数据格式转换
+        List resList = new ArrayList<HashMap<String,Object>>();
+        set.forEach(x -> {
+            HashMap<String, Object> tempMap = new HashMap<>();
+            tempMap.put("category",  x);
+            tempMap.put("list", map.get(x));
+            resList.add(tempMap);
+        });
+        if (null != resList){
             apiResult.setStatus(Constants.SUCCESS);
-            apiResult.setRes(map);
+            apiResult.setRes(resList);
             return apiResult;
         }else {
             apiResult.setMsg("query failed...");

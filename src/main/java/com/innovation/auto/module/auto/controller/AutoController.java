@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,23 @@ public class AutoController {
 
 
         apiResult.setRes(motorInfos);
+        apiResult.setStatus(Constants.SUCCESS);
+        apiResult.setMsg("query success");
+        return apiResult;
+    }
+
+
+    /**
+     * 查询motor详细信息
+     * @return
+     */
+    @GetMapping("/motor")
+    public APIResult queryMotor(@RequestParam(value = "motorId") Integer motorId) {
+        APIResult apiResult = new APIResult();
+        apiResult.setMsg("ok");
+        apiResult.setStatus(Constants.SUCCESS);
+        LinkedHashMap<String, String> motorInfo = autoService.selectByMotorId(motorId);
+        apiResult.setRes(motorInfo);
         apiResult.setStatus(Constants.SUCCESS);
         apiResult.setMsg("query success");
         return apiResult;
