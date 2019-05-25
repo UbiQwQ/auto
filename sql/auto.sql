@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 47.104.104.109_3306
-Source Server Version : 50642
-Source Host           : 47.104.104.109:3306
+Source Server         : springcloud
+Source Server Version : 80012
+Source Host           : localhost:3306
 Source Database       : auto
 
 Target Server Type    : MYSQL
-Target Server Version : 50642
+Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2019-05-15 20:52:00
+Date: 2019-05-25 13:12:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -94,7 +94,7 @@ CREATE TABLE `code` (
 -- Records of code
 -- ----------------------------
 INSERT INTO `code` VALUES ('1', '跑车', '1');
-INSERT INTO `code` VALUES ('2', '机车', '1');
+INSERT INTO `code` VALUES ('2', '街车', '1');
 
 -- ----------------------------
 -- Table structure for collection
@@ -418,6 +418,7 @@ CREATE TABLE `manufacturer` (
 -- ----------------------------
 -- Records of manufacturer
 -- ----------------------------
+INSERT INTO `manufacturer` VALUES ('1', '中国厂商', '测试', '2019-05-25 12:23:08');
 
 -- ----------------------------
 -- Table structure for motor_info
@@ -445,20 +446,21 @@ CREATE TABLE `motor_info` (
   `instrument` varchar(15) NOT NULL COMMENT '仪表形式',
   `maximum_speed` varchar(10) NOT NULL COMMENT '最高速度',
   `type` int(11) NOT NULL COMMENT '热门机型',
+  `hot` int(11) DEFAULT NULL COMMENT '热度',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='摩托信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='摩托信息表';
 
 -- ----------------------------
 -- Records of motor_info
 -- ----------------------------
-INSERT INTO `motor_info` VALUES ('1', '测试', '1', '1', '1', '2018-12-25 09:53:02', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1');
-INSERT INTO `motor_info` VALUES ('3', '本田CBR600RR', '1', '1', '1', '2019-05-15 19:46:10', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `motor_info` VALUES ('4', '铃木GSX-R600', '1', '1', '1', '2019-05-15 19:46:50', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `motor_info` VALUES ('5', '川崎Ninja 250R', '1', '1', '1', '2019-05-15 19:47:23', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `motor_info` VALUES ('6', '杜卡迪大魔鬼Diavel', '1', '1', '1', '2019-05-15 19:48:04', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `motor_info` VALUES ('7', '杜卡迪Monster 796', '1', '1', '1', '2019-05-15 19:48:35', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2');
-INSERT INTO `motor_info` VALUES ('8', '川崎GTR1400', '1', '1', '1', '2019-05-15 19:49:11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2');
-INSERT INTO `motor_info` VALUES ('9', '雅马哈FJR1300', '1', '1', '1', '2019-05-15 19:49:51', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2');
+INSERT INTO `motor_info` VALUES ('1', '测试', '1', '1', '1', '2018-12-25 09:53:02', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1');
+INSERT INTO `motor_info` VALUES ('3', '本田CBR600RR', '1', '1', '1', '2019-05-15 19:46:10', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `motor_info` VALUES ('4', '铃木GSX-R600', '1', '1', '1', '2019-05-15 19:46:50', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `motor_info` VALUES ('5', '川崎Ninja 250R', '1', '1', '1', '2019-05-15 19:47:23', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `motor_info` VALUES ('6', '杜卡迪大魔鬼Diavel', '1', '1', '1', '2019-05-15 19:48:04', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `motor_info` VALUES ('7', '杜卡迪Monster 796', '1', '1', '1', '2019-05-15 19:48:35', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2', '1');
+INSERT INTO `motor_info` VALUES ('8', '川崎GTR1400', '1', '1', '1', '2019-05-15 19:49:11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2', '0');
+INSERT INTO `motor_info` VALUES ('9', '雅马哈FJR1300', '1', '1', '1', '2019-05-15 19:49:51', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2', '1');
 
 -- ----------------------------
 -- Table structure for permission

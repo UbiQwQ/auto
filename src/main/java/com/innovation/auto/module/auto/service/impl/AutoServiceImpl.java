@@ -6,6 +6,7 @@ import com.innovation.auto.module.auto.service.AutoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,11 @@ public class AutoServiceImpl implements AutoService {
     @Override
     public int updateByPrimaryKeySelective(MotorInfo record) {
         return motorInfoMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public LinkedHashMap<String, String> selectByMotorId(Integer id) {
+        return motorInfoMapper.selectByMotorId(id);
     }
 
 }

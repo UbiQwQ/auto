@@ -317,4 +317,41 @@
 	m.type = c.id
   </select>
 
+  <!-- 查询特定motor详细信息-->
+  <select id="selectByMotorId" parameterType="java.lang.Integer" resultType="java.util.LinkedHashMap">
+    SELECT
+        a.id,
+        a.`name`,
+        a.model,
+        b.manufacturer_name,
+        c.country,
+        a.market_time,
+        a.retail_price,
+        a.displacement,
+        a.cylinders_num,
+        a.stroke,
+        a.per_cylinder_valve,
+        a.maximum_power,
+        a.maximum_torque,
+        a.fuel_consumption,
+        a.gear,
+        a.tank_capacity,
+        a.weight,
+        a.brake_system,
+        a.instrument,
+        a.maximum_speed,
+        d.`value`,
+        a.hot
+    FROM
+        motor_info a,
+        manufacturer b,
+        country c,
+        `code` d
+    WHERE
+        a.manufacturer_id = b.id
+    AND a.made_country = c.ccode
+    AND a.type = d.id
+    AND a.id = #{id}
+  </select>
+
 </mapper>
