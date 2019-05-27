@@ -24,11 +24,12 @@
     <result column="instrument" jdbcType="VARCHAR" property="instrument" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="hot" jdbcType="INTEGER" property="hot" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, model, manufacturer_id, made_country, market_time, retail_price, displacement, 
     cylinders_num, stroke, per_cylinder_valve, maximum_power, maximum_torque, fuel_consumption, 
-    gear, tank_capacity, weight, maximum_speed, brake_system, instrument, type, hot
+    gear, tank_capacity, weight, maximum_speed, brake_system, instrument, type, hot, img
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -47,14 +48,15 @@
       stroke, per_cylinder_valve, maximum_power, 
       maximum_torque, fuel_consumption, gear, 
       tank_capacity, weight, maximum_speed,
-      brake_system, instrument, type, hot)
+      brake_system, instrument, type, hot, img)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
       #{manufacturerId,jdbcType=INTEGER}, #{madeCountry,jdbcType=VARCHAR}, #{marketTime,jdbcType=TIMESTAMP}, 
       #{retailPrice,jdbcType=DECIMAL}, #{displacement,jdbcType=VARCHAR}, #{cylindersNum,jdbcType=VARCHAR}, 
       #{stroke,jdbcType=VARCHAR}, #{perCylinderValve,jdbcType=VARCHAR}, #{maximumPower,jdbcType=VARCHAR}, 
       #{maximumTorque,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, #{gear,jdbcType=VARCHAR}, 
       #{tankCapacity,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{maximumSpeed,jdbcType=VARCHAR},
-      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}), #{hot,jdbcType=INTEGER})
+      #{brakeSystem,jdbcType=VARCHAR}, #{instrument,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}),
+      #{hot,jdbcType=INTEGER}), #{img,jdbcType=VARCHAR}
   </insert>
   <insert id="insertSelective" parameterType="com.innovation.auto.entity.MotorInfo">
     insert into motor_info
@@ -125,6 +127,9 @@
       <if test="hot != null">
         hot,
       </if>
+      <if test="img != null">
+        img,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -192,6 +197,9 @@
       </if>
       <if test="hot != null">
         #{hot,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -261,6 +269,9 @@
       <if test="hot != null">
         type = #{hot,jdbcType=INTEGER},
       </if>
+      <if test="img != null">
+        type = #{img,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -287,18 +298,48 @@
       instrument = #{instrument,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       hot = #{hot,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
 
   <!--查询所有汽车信息-->
-  <select id="selectAuto" parameterType="Map" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from motor_info
+  <select id="selectAuto" parameterType="Map" resultType="java.util.LinkedHashMap">
+    SELECT
+    a.id,
+    a.`name`,
+    a.model,
+    b.manufacturer_name,
+    c.country,
+    a.market_time,
+    a.retail_price,
+    a.displacement,
+    a.img,
+    a.cylinders_num,
+    a.stroke,
+    a.per_cylinder_valve,
+    a.maximum_power,
+    a.maximum_torque,
+    a.fuel_consumption,
+    a.gear,
+    a.tank_capacity,
+    a.weight,
+    a.brake_system,
+    a.instrument,
+    a.maximum_speed,
+    d.`value` type,
+    a.hot
+    FROM
+    motor_info a
+    LEFT JOIN manufacturer b ON a.manufacturer_id = b.id
+    LEFT JOIN country c ON a.made_country = c.ccode
+    LEFT JOIN `code` d ON a.type = d.id
     <where>
       <if test="null != countryId">
-        made_country = #{countryId}
+        a.made_country = #{countryId}
+      </if>
+      <if test="name != null">
+        a.name like '%${name}%'
       </if>
     </where>
   </select>
@@ -328,6 +369,7 @@
         a.market_time,
         a.retail_price,
         a.displacement,
+        a.img,
         a.cylinders_num,
         a.stroke,
         a.per_cylinder_valve,
@@ -340,7 +382,7 @@
         a.brake_system,
         a.instrument,
         a.maximum_speed,
-        d.`value`,
+        d.`value` type,
         a.hot
     FROM
         motor_info a,

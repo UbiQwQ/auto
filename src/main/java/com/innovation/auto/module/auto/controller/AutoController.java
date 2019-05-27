@@ -32,14 +32,16 @@ public class AutoController {
      * @return
      */
     @GetMapping("/queryAuto")
-    public APIResult queryAuto(@RequestParam(value = "countryId",required = false) Integer countryId) {
+    public APIResult queryAuto(@RequestParam(value = "countryId",required = false) Integer countryId,
+                               @RequestParam(value = "name",required = false) String name) {
         APIResult apiResult = new APIResult();
         apiResult.setMsg("ok");
         apiResult.setStatus(Constants.SUCCESS);
 
         Map<String,Object> map = new HashMap<>();
         map.put("countryId",countryId);
-        List<MotorInfo> motorInfos = autoService.selectAuto(map);
+        map.put("name",name);
+        List<LinkedHashMap<String,String>> motorInfos = autoService.selectAuto(map);
 
 
         apiResult.setRes(motorInfos);

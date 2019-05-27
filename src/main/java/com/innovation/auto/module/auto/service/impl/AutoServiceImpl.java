@@ -25,9 +25,9 @@ public class AutoServiceImpl implements AutoService {
     private MotorInfoMapper motorInfoMapper;
 
     @Override
-    public List<MotorInfo> selectAuto(Map<String,Object> map) {
+    public List<LinkedHashMap<String,String>> selectAuto(Map<String,Object> map) {
 
-        List<MotorInfo> motorInfos = motorInfoMapper.selectAuto(map);
+        List<LinkedHashMap<String,String>> motorInfos = motorInfoMapper.selectAuto(map);
         return motorInfos;
     }
 

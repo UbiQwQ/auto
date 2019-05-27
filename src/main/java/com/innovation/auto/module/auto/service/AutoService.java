@@ -19,7 +19,7 @@ public interface AutoService {
      * 查询所有汽车信息
      * @return
      */
-    List<MotorInfo> selectAuto(Map<String,Object> map);
+    List<LinkedHashMap<String,String>> selectAuto(Map<String,Object> map);
 
     int deleteByPrimaryKey(Integer id);
 

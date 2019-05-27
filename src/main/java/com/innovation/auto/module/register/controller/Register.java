@@ -59,6 +59,7 @@ public class Register {
         user.setBirthday(birthday);
         user.setGender(gender.equals("男") ? "1" : "0");
         user.setExperience("0");
+        user.setIsAdmin(0);
         user.setCreatedTime(new Date());
 
         String registerResult = userService.register(user);

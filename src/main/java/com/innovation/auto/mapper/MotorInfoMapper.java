@@ -24,7 +24,7 @@ public interface MotorInfoMapper {
      * 查询所有汽车信息
      * @return
      */
-    List<MotorInfo> selectAuto(Map<String,Object> map);
+    List<LinkedHashMap<String,String>> selectAuto(Map<String,Object> map);
 
     /*
      * @Description 分类查看机车信息

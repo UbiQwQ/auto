@@ -234,7 +234,7 @@
   </select>
   <!--根据用户邮箱查询用户-->
   <select id="selectUserByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id, email,`name`, `password`
+    select id, is_admin, email,`name`, `password`
     from user
     where email = #{email}
   </select>
