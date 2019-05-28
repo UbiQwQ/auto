@@ -4,7 +4,6 @@ import com.innovation.auto.entity.MotorInfo;
 import com.innovation.auto.model.APIResult;
 import com.innovation.auto.module.auto.service.AutoService;
 import com.innovation.auto.util.Constants;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
