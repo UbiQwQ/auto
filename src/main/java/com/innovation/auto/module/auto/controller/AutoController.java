@@ -72,12 +72,12 @@ public class AutoController {
      * @return
      */
     @DeleteMapping("/motor")
-    public APIResult deleteAuto(@RequestParam(value = "id") Integer id) {
+    public APIResult deleteAuto(@RequestParam(value = "id") String id) {
 
         APIResult apiResult = new APIResult();
         apiResult.setMsg("delete successfully...");
         apiResult.setStatus(Constants.SUCCESS);
-        int result = autoService.deleteByPrimaryKey(id);
+        int result = autoService.deleteByPrimaryKey(Integer.valueOf(id));
 
         if (result == 1) {
             apiResult.setStatus(Constants.SUCCESS);
@@ -90,13 +90,13 @@ public class AutoController {
     }
 
     @PostMapping("/motor")
-    public APIResult insertAuto(@RequestParam(value = "motorName") String motorName,
-                                @RequestParam(value = "country") String country,
+    public APIResult insertAuto(@RequestParam(value = "name") String motorName,
+                                @RequestParam(value = "madeCountry") String country,
                                 @RequestParam(value = "retailPrice") Long retailPrice,
                                 @RequestParam(value = "weight") String weight,
-                                @RequestParam(value = "maxTorque") String maxTorque,
-                                @RequestParam(value = "maxPower") String maxPower,
-                                @RequestParam(value = "maxSpeed") String maxSpeed) {
+                                @RequestParam(value = "maximumTorque") String maxTorque,
+                                @RequestParam(value = "maximumPower") String maxPower,
+                                @RequestParam(value = "maximumSpeed") String maxSpeed) {
         MotorInfo motorInfo = new MotorInfo();
         motorInfo.setName(motorName);
         motorInfo.setMadeCountry(country);
@@ -106,10 +106,11 @@ public class AutoController {
         motorInfo.setMaximumPower(maxPower);
         motorInfo.setmaximumSpeed(maxSpeed);
 
+
         APIResult apiResult = new APIResult();
         apiResult.setMsg("insert successfully...");
         apiResult.setStatus(Constants.SUCCESS);
-        int result = autoService.insert(motorInfo);
+        int result = autoService.insertSelective(motorInfo);
         if (result == 1) {
             apiResult.setStatus(Constants.SUCCESS);
             return apiResult;
@@ -120,11 +121,41 @@ public class AutoController {
         }
     }
 
-    @PutMapping("/motor")
-    public APIResult updateAuto(@RequestBody MotorInfo motorInfo) {
+    /**
+     * 修改机车信息
+     * @param id
+     * @param motorName
+     * @param country
+     * @param retailPrice
+     * @param weight
+     * @param maxTorque
+     * @param maxPower
+     * @param maxSpeed
+     * @return
+     */
+    @PostMapping("/motorUpdate")
+    public APIResult updateAuto(@RequestParam(value = "id") String id,
+                                @RequestParam(value = "name") String motorName,
+                                @RequestParam(value = "madeCountry") String country,
+                                @RequestParam(value = "retailPrice") Long retailPrice,
+                                @RequestParam(value = "weight") String weight,
+                                @RequestParam(value = "maximumTorque") String maxTorque,
+                                @RequestParam(value = "maximumPower") String maxPower,
+                                @RequestParam(value = "maximumSpeed") String maxSpeed) {
         APIResult apiResult = new APIResult();
         apiResult.setMsg("update successfully...");
         apiResult.setStatus(Constants.SUCCESS);
+
+
+        MotorInfo motorInfo = autoService.selectAutoById(id);
+        motorInfo.setName(motorName);
+        motorInfo.setMadeCountry(country);
+        motorInfo.setRetailPrice(retailPrice);
+        motorInfo.setWeight(weight);
+        motorInfo.setMaximumTorque(maxTorque);
+        motorInfo.setMaximumPower(maxPower);
+        motorInfo.setmaximumSpeed(maxSpeed);
+
         int result = autoService.updateByPrimaryKeySelective(motorInfo);
 
         if (result == 1) {
@@ -140,3 +171,4 @@ public class AutoController {
 
 
 }
+

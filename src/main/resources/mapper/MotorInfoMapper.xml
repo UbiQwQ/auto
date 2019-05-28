@@ -396,4 +396,15 @@
     AND a.id = #{id}
   </select>
 
+  <select id="selectAutoById" parameterType="java.lang.String" resultType="com.innovation.auto.entity.MotorInfo">
+    SELECT
+      *
+    from motor_info
+    <where>
+      <if test="_parameter != null">
+        id = #{id,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
 </mapper>

@@ -42,6 +42,11 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
+    public int insertSelective(MotorInfo record) {
+        return motorInfoMapper.insertSelective(record);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(MotorInfo record) {
         return motorInfoMapper.updateByPrimaryKeySelective(record);
     }
@@ -49,6 +54,11 @@ public class AutoServiceImpl implements AutoService {
     @Override
     public LinkedHashMap<String, String> selectByMotorId(Integer id) {
         return motorInfoMapper.selectByMotorId(id);
+    }
+
+    @Override
+    public MotorInfo selectAutoById(String id) {
+        return motorInfoMapper.selectAutoById(id);
     }
 
 }

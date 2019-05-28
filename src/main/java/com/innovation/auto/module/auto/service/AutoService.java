@@ -25,6 +25,8 @@ public interface AutoService {
 
     int insert(MotorInfo record);
 
+    int insertSelective(MotorInfo record);
+
 //    int insertSelective(MotorInfo record);
 //    MotorInfo selectByPrimaryKey(Integer id);
     int updateByPrimaryKeySelective(MotorInfo record);
@@ -39,4 +41,5 @@ public interface AutoService {
      **/
     LinkedHashMap<String,String> selectByMotorId(Integer id);
 
+    MotorInfo selectAutoById(String id);
 }

@@ -42,5 +42,7 @@ public interface MotorInfoMapper {
      **/
     LinkedHashMap<String,String> selectByMotorId(Integer id);
 
+    MotorInfo selectAutoById(String id);
+
 
 }
