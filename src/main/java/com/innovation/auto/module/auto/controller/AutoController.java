@@ -90,7 +90,22 @@ public class AutoController {
     }
 
     @PostMapping("/motor")
-    public APIResult insertAuto(@RequestBody MotorInfo motorInfo) {
+    public APIResult insertAuto(@RequestParam(value = "motorName") String motorName,
+                                @RequestParam(value = "country") String country,
+                                @RequestParam(value = "retailPrice") Long retailPrice,
+                                @RequestParam(value = "weight") String weight,
+                                @RequestParam(value = "maxTorque") String maxTorque,
+                                @RequestParam(value = "maxPower") String maxPower,
+                                @RequestParam(value = "maxSpeed") String maxSpeed) {
+        MotorInfo motorInfo = new MotorInfo();
+        motorInfo.setName(motorName);
+        motorInfo.setMadeCountry(country);
+        motorInfo.setRetailPrice(retailPrice);
+        motorInfo.setWeight(weight);
+        motorInfo.setMaximumTorque(maxTorque);
+        motorInfo.setMaximumPower(maxPower);
+        motorInfo.setmaximumSpeed(maxSpeed);
+
         APIResult apiResult = new APIResult();
         apiResult.setMsg("insert successfully...");
         apiResult.setStatus(Constants.SUCCESS);
